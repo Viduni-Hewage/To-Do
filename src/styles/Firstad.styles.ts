@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 12,
   },
   subtext: {
     fontSize: 19,
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
   },
   nextContainer: {
     alignSelf: 'center',
-    bottom: -110,    
+    bottom: -110,
   },
   nextText: {
     fontSize: 19,
