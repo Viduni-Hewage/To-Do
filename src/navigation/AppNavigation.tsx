@@ -1,6 +1,6 @@
 import React from "react";
-import HomeScreen from "../screens/Home.screen";
-import DetailsScreen from "../screens/Details.screen";
+import MainScreen from "../screens/Main.screen";
+import LoginScreen from "../screens/Login.screen";
 import LoadingScreen from "../screens/Loading.screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -10,8 +10,8 @@ const AppNavigation = () =>{
     return (
         <Stack.Navigator>
             <Stack.Screen name = "Loading" component={LoadingScreen} options = {{headerShown: false}} />
-            <Stack.Screen name = "Home" component={HomeScreen} />
-            <Stack.Screen name = "Details" component={DetailsScreen} />
+            <Stack.Screen name = "Main" component={MainScreen} />
+            <Stack.Screen name = "Login" component={LoginScreen} options = {{headerShown: false}}/>
         </Stack.Navigator>
     );
 };

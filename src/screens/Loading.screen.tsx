@@ -11,7 +11,7 @@ type LoadingScreenProps = {
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ navigation }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.navigate('Main');
     }, 4000);
 
     return () => clearTimeout(timer);
