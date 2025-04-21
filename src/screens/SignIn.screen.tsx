@@ -18,7 +18,7 @@ const SignInScreen = ({ navigation }: any) => {
 
   const handleLogin = () => {
     // Login logic here
-    navigation.navigate('Home');
+    navigation.navigate('Firstad');
   };
 
   const handleNavigateToLogin = () => {
