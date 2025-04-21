@@ -17,11 +17,11 @@ const LoginScreen = ({ navigation }: any) => {
 
   const handleLogin = () => {
     // Login logic here
-    navigation.navigate('Details');
+    navigation.navigate('Home');
   };
 
   const handleNavigateToSignin = () => {
-    navigation.navigate('Signin');
+    navigation.navigate('SignIn');
   };
 
   return (
@@ -35,6 +35,8 @@ const LoginScreen = ({ navigation }: any) => {
                 resizeMode="contain"
             />
         </View>
+        <Text style={styles.subtitle1}>Welcome Back !</Text>
+        <Text style={styles.subtitle2}>Create your timing!</Text>
 
         <Text style={styles.label}>Email:</Text>
         <TextInput
