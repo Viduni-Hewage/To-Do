@@ -4,7 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from '../styles/Header.styles';
 
-const CustomHeader = ({ canGoBack = false }: { canGoBack?: boolean }) => {
+interface CustomHeaderProps {
+  canGoBack?: boolean;
+  onMenuPress?: () => void; // <-- ADD this line
+}
+
+const CustomHeader: React.FC<CustomHeaderProps> = ({ canGoBack = false, onMenuPress }) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   return (
@@ -31,7 +36,7 @@ const CustomHeader = ({ canGoBack = false }: { canGoBack?: boolean }) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.right}>
+        <TouchableOpacity style={styles.right} onPress={onMenuPress}>
           <Image
             source={require('../assets/menu.png')}
             style={styles.menu}
