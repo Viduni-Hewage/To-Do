@@ -9,8 +9,11 @@ import {
 import styles from '../styles/Edittask.styles';
 import CustomHeader from '../components/Header';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import MenuPopup from '../components/MenuPopup';
 
 const EditTaskScreen = ({ navigation }: any) => {
+  const [isMenuVisible, setMenuVisible] = useState(false);
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState(new Date());
@@ -31,7 +34,7 @@ const EditTaskScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.mainContainer}>
-      <CustomHeader canGoBack={true} />
+      <CustomHeader canGoBack={true} onMenuPress={() => setMenuVisible(true)}/>
       <View style={styles.container}>
         <Text style={styles.heading}>Edit Task</Text>
         <View style={styles.underline} />
@@ -116,6 +119,7 @@ const EditTaskScreen = ({ navigation }: any) => {
             />
         )}
       </View>
+      {<MenuPopup visible = {isMenuVisible} onClose={() => setMenuVisible(false)}  />}
     </View>
   );
 };
