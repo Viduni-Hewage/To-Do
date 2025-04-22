@@ -10,6 +10,7 @@ import styles from '../styles/Addtask.styles';
 import CustomHeader from '../components/Header';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MenuPopup from '../components/MenuPopup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddTaskScreen = ({ navigation }: any) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
@@ -30,6 +31,18 @@ const AddTaskScreen = ({ navigation }: any) => {
         const currentTime = selectedTime || time;
         setShowTimePicker(false);
         setTime(currentTime);
+      };
+
+      const saveTask = async () => {
+        const task = { title, description, date: new Date(date), time: new Date(time) };
+        try {
+          const storedTasks = await AsyncStorage.getItem('tasks');
+          const tasks = storedTasks ? JSON.parse(storedTasks) : [];
+          tasks.push(task);
+          await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+        } catch (error) {
+          console.error('Error saving task:', error);
+        }
       };
 
   return (
@@ -94,8 +107,7 @@ const AddTaskScreen = ({ navigation }: any) => {
           <TouchableOpacity
             style={[styles.button, styles.confirmButton]}
             onPress={() => {
-              // You can add task saving logic here
-              console.log('Task Added:', { title, description, date, time });
+              saveTask();
               navigation.goBack();
             }}
           >
