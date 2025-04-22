@@ -18,7 +18,7 @@ const AppNavigation = () =>{
     return (
         <Stack.Navigator>
             <Stack.Screen name = "Loading" component={LoadingScreen} options = {{headerShown: false}} />
-            <Stack.Screen name = "Main" component={MainScreen} />
+            <Stack.Screen name = "Main" component={MainScreen} options = {{headerShown: false}}/>
             <Stack.Screen name = "Login" component={LoginScreen} options = {{headerShown: false}}/>
             <Stack.Screen name = "SignIn" component={SignInScreen} options = {{headerShown: false}}/>
             <Stack.Screen name = "Firstad" component={FirstadScreen} options = {{headerShown: false}}/>
