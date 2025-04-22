@@ -6,6 +6,8 @@ import SignInScreen from "../screens/SignIn.screen";
 import FirstadScreen from "../screens/Firstad.screen";
 import SecondadScreen from "../screens/Secondad.screen";
 import ThirdadScreen from "../screens/Thirdad.screen";
+import HomeScreen from "../screens/Home.screen";
+import CustomHeader from "../components/Header";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +22,7 @@ const AppNavigation = () =>{
             <Stack.Screen name = "Firstad" component={FirstadScreen} options = {{headerShown: false}}/>
             <Stack.Screen name = "Secondad" component={SecondadScreen} options = {{headerShown: false}}/>
             <Stack.Screen name = "Thirdad" component={ThirdadScreen} options = {{headerShown: false}}/>
+            <Stack.Screen name = "Home" component={HomeScreen} options = {{header: () => <CustomHeader canGoBack={false} />, headerShown: false }}/>
 
         </Stack.Navigator>
     );
