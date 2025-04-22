@@ -91,6 +91,17 @@ const styles = StyleSheet.create({
     height: 20,
     tintColor: '#fff',
   },
+  taskTitleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  edit:{
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginRight: 5,
+  },
 });
 
 export default styles;

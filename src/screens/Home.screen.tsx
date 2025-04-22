@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
 import {
   View,
   Text,
@@ -18,20 +20,21 @@ const HomeScreen = ({ navigation }: any) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
   const [tasks, setTasks] = useState<any[]>([]);
 
-  useEffect(() => {
-    const loadTasks = async () => {
-      try {
-        const storedTasks = await AsyncStorage.getItem('tasks');
-        if (storedTasks) {
-          setTasks(JSON.parse(storedTasks));
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadTasks = async () => {
+        try {
+          const storedTasks = await AsyncStorage.getItem('tasks');
+          if (storedTasks) {
+            setTasks(JSON.parse(storedTasks));
+          }
+        } catch (error) {
+          console.error('Error loading tasks:', error);
         }
-      } catch (error) {
-        console.error('Error loading tasks:', error);
-      }
-    };
-
-    loadTasks();
-  }, []);
+      };
+      loadTasks();
+    }, [])
+  );
 
   const deleteTask = async (index: number) => {
     try {
@@ -62,7 +65,12 @@ const HomeScreen = ({ navigation }: any) => {
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
           >
-            <Text style={styles.taskTitle}>{task.title}</Text>
+            <View style={styles.taskTitleContainer}>
+              <Text style={styles.taskTitle}>{task.title}</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Edittask', { task, index })}>
+                <Text style={styles.edit}>EDIT</Text>
+              </TouchableOpacity>
+            </View>
             <Text style={styles.description}>{task.description}</Text>
             <View style={styles.underline} />
             <View style={styles.dateAndTrashContainer}>
