@@ -1,3 +1,4 @@
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -36,12 +37,59 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: 'white',
     fontWeight: '700',
+    marginBottom: hp('2%'),
   },
   bottomContainer: {
     position: 'absolute',
     bottom: 75,
     left: 20,
     right: 20,
+  },
+  taskBox: {
+    padding: wp('2%'),
+    paddingLeft: wp('4%'),
+    marginBottom: hp('2%'),
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 10,
+  },
+  taskTitle: {
+    fontWeight: 'bold',
+    fontSize: 17,
+    marginBottom: 4,
+    color: 'white',
+  },
+  description: {
+    fontSize: 15,
+    marginBottom: 4,
+    color: 'white',
+  },
+  dateTime: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 4,
+    color: 'white',
+  },
+  underline: {
+    height: 1,
+    backgroundColor: 'white',
+    width: wp('83%'),
+    marginTop: 5,
+    marginBottom: 7,
+    alignSelf: 'center',
+  },
+  dateAndTrashContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  trashIconContainer: {
+    padding: 5,
+  },
+  trashIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#fff',
   },
 });
 
