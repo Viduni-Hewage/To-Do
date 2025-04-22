@@ -106,8 +106,8 @@ const AddTaskScreen = ({ navigation }: any) => {
 
           <TouchableOpacity
             style={[styles.button, styles.confirmButton]}
-            onPress={() => {
-              saveTask();
+            onPress={async () => {
+              await saveTask();
               navigation.goBack();
             }}
           >
