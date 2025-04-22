@@ -10,14 +10,16 @@ import styles from '../styles/Edittask.styles';
 import CustomHeader from '../components/Header';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import MenuPopup from '../components/MenuPopup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const EditTaskScreen = ({ navigation }: any) => {
+const EditTaskScreen = ({ navigation, route }: any) => {
+  const { task, index } = route.params;
   const [isMenuVisible, setMenuVisible] = useState(false);
 
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
+    const [title, setTitle] = useState(task.title);
+    const [description, setDescription] = useState(task.description);
+    const [date, setDate] = useState(new Date(task.date));
+    const [time, setTime] = useState(new Date(task.time));
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showTimePicker, setShowTimePicker] = useState(false);
 
@@ -93,10 +95,22 @@ const EditTaskScreen = ({ navigation }: any) => {
 
           <TouchableOpacity
             style={[styles.button, styles.confirmButton]}
-            onPress={() => {
-              
-              console.log('Task Added:', { title, description, date, time });
-              navigation.goBack();
+            onPress={async () => {
+              try {
+                const storedTasks = await AsyncStorage.getItem('tasks');
+                let updatedTasks = JSON.parse(storedTasks || '[]');
+                updatedTasks[index] = {
+                  ...updatedTasks[index],
+                  title,
+                  description,
+                  date: date.toISOString(),
+                  time: time.toISOString(),
+                };
+                await AsyncStorage.setItem('tasks', JSON.stringify(updatedTasks));
+                navigation.goBack();
+              } catch (error) {
+                console.error('Error updating task:', error);
+              }
             }}
           >
             <Text style={styles.buttonText}>Save</Text>
