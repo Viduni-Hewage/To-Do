@@ -36,15 +36,15 @@
 ## 📦 Installation & Setup
 
 1. **Clone the Repository**  
-git clone https://github.com/Viduni-Hewage/To-Do.git
-cd TaskApp
+- git clone https://github.com/Viduni-Hewage/To-Do.git
+- cd TaskApp
 
 2. **Install Dependencies**
-npm install
+- npm install
 
 3. **Run the App**
-For Android :- npx react-native run-android
-For iOS (Mac only) :- npx react-native run-ios
+- For Android :- npx react-native run-android
+- For iOS (Mac only) :- npx react-native run-ios
 
 * Make sure to start the Metro bundler if it doesn’t start automatically :- npx react-native start
 
