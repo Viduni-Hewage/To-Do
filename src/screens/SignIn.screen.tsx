@@ -94,6 +94,8 @@ const SignInScreen = ({ navigation }: any) => {
         <TextInput
           style={styles.input}
           placeholder="Enter your email"
+          autoComplete="email"
+          textContentType="emailAddress"
           keyboardType="email-address"
           autoCapitalize="none"
           onChangeText={(text) => {
