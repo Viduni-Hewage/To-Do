@@ -8,16 +8,23 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 import styles from '../styles/Login.styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Login logic here
-    navigation.navigate('Home');
+  const handleLogin = async () => {
+    try {
+      await AsyncStorage.setItem('isLoggedIn', 'true');
+      navigation.replace('Home');
+    } catch (error) {
+      Alert.alert('Login Failed', 'Something went wrong. Please try again.');
+      console.log('Error saving login status:', error);
+    }
   };
 
   const handleNavigateToSignin = () => {

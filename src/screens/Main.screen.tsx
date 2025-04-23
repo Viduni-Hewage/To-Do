@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -8,40 +8,69 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import styles from '../styles/Main.styles';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const StartScreen = () => {
-  const navigation = useNavigation();
+const MainScreen = () => {
+  const navigation = useNavigation<any>();
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <LinearGradient colors={['#2D8ED7', '#693FDC']} style={styles.gradient}>
-        <View style={styles.container}>
-            <Image
-                source={require('../assets/logoBig.png')}
-                style={styles.image}
-                resizeMode="contain"
-            />
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+      if (isLoggedIn === 'true') {
+        navigation.replace('Home');
+      } else {
+        setLoading(false); // allow showing button
+      }
+    };
 
-            <Text style={styles.title}>DOO-IT</Text>
+    checkLoginStatus();
+  }, [navigation]);
 
-            <View style={{ flex: 1 }} />
+  if (loading) {
+    return (
+        <LinearGradient colors={['#2D8ED7', '#693FDC']} style={styles.gradient}>
+            <View style={styles.container}>
+                <Image
+                    source={require('../assets/logoBig.png')}
+                    style={styles.image}
+                    resizeMode="contain"
+                />
+                <Text style={styles.title}>DOO-IT</Text>
+            </View>
+        </LinearGradient>
+      );
+    }
+    return (
+        <LinearGradient colors={['#2D8ED7', '#693FDC']} style={styles.gradient}>
+            <View style={styles.container}>
+                <Image
+                    source={require('../assets/logoBig.png')}
+                    style={styles.image}
+                    resizeMode="contain"
+                />
 
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Login' as never)}
-            >
-                <View style={styles.buttonContent}>
-                    <Text style={styles.buttonText}>Get Started</Text>
-                    <Image
-                        source={require('../assets/front.png')}
-                        style={styles.arrow}
-                        resizeMode="contain"
-                    />
-                </View>
+                <Text style={styles.title}>DOO-IT</Text>
 
-            </TouchableOpacity>
-        </View>
-    </LinearGradient>
-  );
+                <View style={{ flex: 1 }} />
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => navigation.navigate('Login')}
+                >
+                    <View style={styles.buttonContent}>
+                        <Text style={styles.buttonText}>Get Started</Text>
+                        <Image
+                            source={require('../assets/front.png')}
+                            style={styles.arrow}
+                            resizeMode="contain"
+                        />
+                    </View>
+
+                </TouchableOpacity>
+            </View>
+        </LinearGradient>
+    );
 };
 
-export default StartScreen;
+export default MainScreen;

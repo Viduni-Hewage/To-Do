@@ -8,17 +8,27 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert,
 } from 'react-native';
 import styles from '../styles/SignIn.styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignInScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
 
-  const handleLogin = () => {
-    // Login logic here
-    navigation.navigate('Firstad');
+  const handleLogin = async () => {
+    if (password !== confirmpassword) {
+      Alert.alert('Error', 'Passwords do not match!');
+      return;
+    }
+    try {
+      await AsyncStorage.setItem('isLoggedIn', 'true');
+      navigation.replace('Firstad');
+    } catch (error) {
+      console.log('Error storing login status:', error);
+    }
   };
 
   const handleNavigateToLogin = () => {

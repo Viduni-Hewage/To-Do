@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import {View, Text, Image} from 'react-native';
-
 import styles from '../styles/Loading.styles';
 import LinearGradient from 'react-native-linear-gradient';
 

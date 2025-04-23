@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import styles from '../styles/MenuPopup.styles';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const { width } = Dimensions.get('window');
 
@@ -18,13 +20,22 @@ interface MenuPopupProps {
   onClose: () => void;
 }
 
+type RootStackParamList = {
+  Home: undefined;
+  Profile: undefined;
+  Settings: undefined;
+  Login: undefined;
+};
+
+type MenuPopupNavigationProp = StackNavigationProp<RootStackParamList>;
+
 const MenuPopup = ({ onClose, visible }: MenuPopupProps) => {
   const slideAnim = useRef(new Animated.Value(width)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const [shouldRender, setShouldRender] = useState(visible);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<MenuPopupNavigationProp>();
 
   useEffect(() => {
     if (visible) {
@@ -54,7 +65,7 @@ const MenuPopup = ({ onClose, visible }: MenuPopupProps) => {
           useNativeDriver: true,
         }),
       ]).start(() => {
-        setShouldRender(false); 
+        setShouldRender(false);
     });}
   }, [backdropOpacity, slideAnim, visible]);
 
@@ -66,7 +77,13 @@ const MenuPopup = ({ onClose, visible }: MenuPopupProps) => {
     }, 200);
   };
 
-  if (!shouldRender) return null;
+  const handleSignOut = async () => {
+    await AsyncStorage.removeItem('isLoggedIn');
+    navigation.replace('Login');
+    onClose();
+  };
+
+  if (!shouldRender) {return null;}
 
   return (
     <>
@@ -138,7 +155,7 @@ const MenuPopup = ({ onClose, visible }: MenuPopupProps) => {
         <View style={styles.signOutContainer}>
           <TouchableOpacity
             style={styles.signOutRow}
-            onPress={() => navigation.navigate('Login' as never)}
+            onPress={handleSignOut}
           >
             <Text style={styles.signoutText}>Sign Out</Text>
             <Image
