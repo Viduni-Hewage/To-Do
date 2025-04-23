@@ -7,7 +7,7 @@
 
 ## 🎥 Demo & Design
 
-📹 **Demo Video**: [Watch Demo]()  
+📹 **Demo Video**: [Watch Demo](https://drive.google.com/file/d/1halYp4savINlIdQK8Si6HTsqle4atlTx/view?usp=sharing)  
 🎨 **Figma Design**: [Figma File](https://www.figma.com/design/3zqYqtRAImvsfZIDBa9HN3/Todo-App---SE-2021-044?node-id=0-1&t=BhtciHPm5TDUhohT-1)
 
 ---
