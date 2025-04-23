@@ -121,7 +121,7 @@ const SignInScreen = ({ navigation }: any) => {
         <TextInput
           style={styles.input}
           placeholder="Confirm your password"
-          secureTextEntry = {false}
+          secureTextEntry
           onChangeText={(text) => {
             setConfirmPassword(text);
             if (confirmPasswordError && text === password) {setConfirmPasswordError('');}
