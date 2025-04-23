@@ -70,6 +70,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#007bff',
   },
+  errorText: {
+    color: 'white',
+    fontSize: 13,
+    marginTop: -25,
+    marginLeft: 4,
+    marginBottom:20,
+  },
 });
 
 export default styles;
