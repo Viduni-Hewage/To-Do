@@ -51,7 +51,7 @@ const HomeScreen = ({ navigation }: any) => {
       <CustomHeader canGoBack={false} onMenuPress={() => setMenuVisible(true)} />
 
       <View style={styles.centerBox}>
-        <Text style={styles.centerText}>Wed, 09 April</Text>
+        <Text style={styles.centerText}>Wed, 23 April</Text>
       </View>
 
       <Text style={styles.bottomText}>Hi ,</Text>
@@ -60,7 +60,7 @@ const HomeScreen = ({ navigation }: any) => {
         {tasks.map((task, index) => (
           <LinearGradient
             key={index}
-            colors={['#1288B0', '#9CDCF1', '#1288B0']}
+            colors={['#005C78', '#1288B0']}
             style={styles.taskBox}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
