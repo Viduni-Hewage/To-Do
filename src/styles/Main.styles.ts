@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      paddingTop: hp('12%'),
+      paddingTop: hp('16%'),
       paddingHorizontal: wp('5%'),
     },
     image: {
-      width: 120,
-      height: 120,
+      width: 110,
+      height: 110,
       marginTop: hp('13%'),
     },
     title: {

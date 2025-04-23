@@ -20,7 +20,7 @@ const MainScreen = () => {
       if (isLoggedIn === 'true') {
         navigation.replace('Home');
       } else {
-        setLoading(false); // allow showing button
+        setLoading(false);
       }
     };
 
